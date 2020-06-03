@@ -1,0 +1,45 @@
+var time = new Date();
+$("#post-area").val("");
+
+setInterval(() => {
+    $.get({
+        url: "stream.json",
+        dataType: "json",
+        success: (data) => {
+            data.forEach((d) => {
+                var dTime = new Date(d.created_at.replace(" +0000", ""));
+                if(dTime > time){
+                    time = dTime;
+                    try{
+                        msg = renderHTMLForStream(d);
+                    }
+                    catch(err){
+                        alert(err)
+                    }
+                    $("#stream-section").prepend(msg.join(""));
+                }
+            });
+        }
+    });
+}, 500);
+
+function renderHTMLForStream(data) {
+    return [`<section class="render-post"><p class="user-name">${data.user.name}</p> |`, 
+    `<p class="karma" id="karma-${data.id}", datetime="${new Date(data.updated_at)}"> ${data.karma}</p>`,
+    `<p class="post-content">${data.content}</p>`,
+    `<span class="like">`,
+    `<form action="/like/message" accept-charset="UTF-8" data-remote="true" method="post">`,
+    `<input name="utf8" type="hidden" value="&#x2713;" />`,
+    `<input value="${data.id}" type="hidden" name="like[post_id]" id="like_post_id" />`,
+    `<input type="submit" name="commit" value="like" data-disable-with="like" />`, 
+    `</form>`,
+    `</span>`,
+    `<span class="dislike">`,
+    `<form action="/dislike/message" accept-charset="UTF-8" data-remote="true" method="post">`,
+    `<input name="utf8" type="hidden" value="&#x2713;" />`,
+    `<input value="${data.id}" type="hidden" name="dislike[post_id]" id="dislike_post_id" />`,
+    `<input type="submit" name="commit" value="dislike" data-disable-with="dislike" />`,  
+    `</form>`,
+    `</span>`,
+    `<section/>`];
+};

@@ -1,0 +1,36 @@
+<% if @count_down %>
+    var timeLeft = <%= @wait %>
+
+    $("#send-post-button").on("click", (e)=>{ 
+        e.preventDefault(); 
+        alert("You've exceed posting limit per 30 seconds.");
+        });
+    
+    countDown = setInterval(()=>{
+        $("#post-area")
+         .val("")
+         .attr("placeholder","You can only post 5 times within 30 seconds. Please wait " + timeLeft + " second(s).")
+         .css("border", "3px solid yellow")
+        
+        timeLeft -= 1
+
+        if(timeLeft == 0){
+            $("#post-area")
+             .val("")
+             .attr("placeholder","Type your message here.")
+             .css("border", "3px solid rgb(37, 226, 251)");
+
+            $("#send-post-button").unbind("click"); 
+
+            clearInterval(countDown); 
+        };
+    },1000)
+<% else %>
+    $("#post-area").val("").attr("placeholder","<%= @msg %>")
+     .css("border", "<%= @border %>")
+
+    setTimeout(()=>{
+        $("#post-area").attr("placeholder","Type your message here.")
+         .css("border", "3px solid rgb(37, 226, 251)")
+    }, 1600)
+<% end %>

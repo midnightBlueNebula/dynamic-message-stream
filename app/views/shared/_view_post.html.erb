@@ -1,0 +1,12 @@
+<p class="user-name"><%= m.user.name %></p> | 
+    <p class="karma" id=<%= "karma-#{m.id}" %> datetime=<%= m.updated_at.strftime("%a %b %d %Y %H:%M:%S %Z") %>><%= m.karma %></p>
+    <p class="post-content"><%= m.content %></p>
+    <% if logged_in? %>
+        <span class="like">
+            <%= render 'shared/like_form', action: "like", id: m.id %>
+        </span>
+        <span class="dislike">
+            <%= render 'shared/like_form', action: "dislike", id: m.id %>
+        </span>
+    <% end %>
+</p>

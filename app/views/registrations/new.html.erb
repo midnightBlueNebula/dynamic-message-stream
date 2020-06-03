@@ -1,0 +1,30 @@
+<section id="login-register-form">
+    <h1 id="login-register-title">Join the Stream!</h1>
+    <%= form_for @user, url: register_path, action: :new do |f| %>
+        <table>
+        
+        <tr>
+            <td><%= f.label "Name:" %></td>
+            <td><%= f.text_field :name %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label "E-mail:  " %></td>
+            <td><%= f.text_field :email %></td>
+        </tr>
+      
+        <tr>
+            <td><%= f.label "Password:" %></td>
+            <td><%= f.password_field :password %></td>
+        </tr>
+
+        <tr>
+            <td><%= f.label "Password Confirmation:" %></td>
+            <td><%= f.password_field :password_confirmation %></td>
+        </tr>
+
+        </table>       
+
+        <%= f.submit "Register" %>
+    <% end %>
+</section>

@@ -1,0 +1,129 @@
+body{
+    background-color: rgb(8, 1, 66);
+    color: rgb(32, 191, 240);
+}
+
+#navbar{
+    float: right;
+    a{
+        text-decoration: none;
+        color: rgb(32, 191, 240);
+    }
+    a:hover{
+        color: rgb(35, 220, 245);
+    }
+}
+
+#login-register-form{
+    border: 1px solid rgb(8, 1, 66);
+    border-radius: 25px;
+    background: linear-gradient(30deg, rgb(12, 3, 88), rgba(11, 3, 88, 0.829));
+    box-shadow: 1px 1px 10px 10px rgb(6, 2, 46);
+    width: 400px;
+    height: 400px;
+    position: relative;
+    top: 60px;
+    clear: both;
+    margin: auto auto;
+    text-align: center;
+    #login-register-title{
+        position: relative;
+        top: 50px;
+        text-align: center;
+    }
+    form{
+        table{
+            position: relative;
+            top: -30px;
+            margin: auto auto;
+        }
+        input{
+            background: linear-gradient(30deg, rgb(12, 3, 88), rgb(15, 5, 112));
+            color: rgb(37, 226, 251);
+        }
+        input[type="submit"]{
+            position: relative;
+            top: 20px;
+            width: 150px;
+            height: 35px;
+            font-size: 20px;
+            border: 1px solid rgb(37, 226, 251);
+            border-radius: 5px;
+        }
+        input[type="text"]{
+            border: 1px solid rgb(37, 226, 251);
+            border-radius: 3px;
+        }
+        input[type="password"]{
+            border: 1px solid rgb(37, 226, 251);
+            border-radius: 3px;
+        }
+        input[type="text"]:focus{
+            border: 1px inset rgb(146, 242, 255);
+        }
+        input[type="password"]:focus{
+            border: 1px inset rgb(146, 242, 255);
+        }
+        position: relative;
+        top: 100px;
+        line-height: 35px;
+    }
+}
+
+#stream-section{
+    clear: both;
+    position: relative;
+    top: 30px;
+    margin: auto auto;
+    border: 1px solid rgb(146, 242, 255);
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 70vh;
+    width: 50vw;
+    
+}
+
+.render-post{
+    margin: 2px 2px 2px 2px;
+    border: 2px solid rgb(146, 242, 255);
+}
+
+#post-form{
+    width: 100%;
+    #post-area{
+        position: relative;
+        top: 10px;
+        width: 100%;
+        border: 3px solid rgb(37, 226, 251);
+        border-radius: 5px; 
+        background: linear-gradient(30deg, rgb(37, 226, 251), rgb(93, 236, 255));
+        color: rgb(12, 3, 88);
+        font-size: 16px;
+    }
+    #send-post-button{
+        text-align: center;
+        height: 35px;
+        width: 100%;
+        font-size: 20px;
+        border: 1px solid rgb(37, 226, 251);
+        border-radius: 5px; 
+        background: linear-gradient(30deg, rgb(12, 3, 88), rgb(15, 5, 112));
+        color: rgb(37, 226, 251);
+    }
+}
+
+.user-name{
+    display: inline;
+}
+
+.karma{
+    display: inline;
+}
+
+.like{
+    display: inline;
+}
+
+.dislike{
+    display: inline;
+}
