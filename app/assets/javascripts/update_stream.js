@@ -7,9 +7,10 @@ setInterval(() => {
         dataType: "json",
         success: (data) => {
             data.forEach((d) => {
-                var dTime = new Date(d.created_at.replace(" +0000", ""));
-                if(dTime > time){
-                    time = dTime;
+                var cTime = new Date(d.created_at.replace(" +0000", ""));
+                var uTime = new Date(d.updated_at.replace(" +0000", ""));
+                if(cTime > time){
+                    time = cTime;
                     try{
                         msg = renderHTMLForStream(d);
                     }
@@ -18,6 +19,16 @@ setInterval(() => {
                     }
                     $("#stream-section").prepend(msg.join(""));
                 }
+                if($(`#karma-${d.id}`).length > 0){
+                    if(new Date($(`#karma-${d.id}`).attr("updatetime")) < uTime){
+                        $(`#karma-${d.id}`).attr("updatetime", `${uTime}`);
+                        if(Number($(`#karma-${d.id}`).text()) > d.karma){
+                            $(`#karma-${d.id}`).text(`${d.karma}`).css("color","steelBlue");
+                        } else if(Number($(`#karma-${d.id}`).text()) < d.karma){
+                            $(`#karma-${d.id}`).text(`${d.karma}`).css("color","pink");
+                        }
+                    }
+                }
             });
         }
     });
@@ -25,7 +36,7 @@ setInterval(() => {
 
 function renderHTMLForStream(data) {
     return [`<section class="render-post"><p class="user-name">${data.user.name}</p> |`, 
-    `<p class="karma" id="karma-${data.id}", datetime="${new Date(data.updated_at)}"> ${data.karma}</p>`,
+    `<p class="karma" id="karma-${data.id}" createtime="${new Date(data.created_at).toUTCString().replace("GMT","UTC")}" updatetime="${new Date(data.updated_at).toUTCString().replace("GMT","UTC")}"> ${data.karma}</p>`,
     `<p class="post-content">${data.content}</p>`,
     `<span class="like">`,
     `<form action="/like/message" accept-charset="UTF-8" data-remote="true" method="post">`,

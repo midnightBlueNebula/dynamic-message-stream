@@ -1,1 +1,2 @@
-$("#karma-<%= @post.id %>").text(<%= @post.karma %>).css("color", "pink");
+$("#karma-<%= @post.id %>").text(<%= @post.karma %>).css("color", "pink")
+                           .attr("updatetime","<%= @post.updated_at %>");

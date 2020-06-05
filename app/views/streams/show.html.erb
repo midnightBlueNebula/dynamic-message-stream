@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'update_stream' %>
 
 <section id="stream-section">
-    <% @stream.each do |m| %>
+    <% @stream.reverse_each do |m| %>
         <section class="render-post">
             <%= render 'shared/view_post', m: m %>
         </section>    
